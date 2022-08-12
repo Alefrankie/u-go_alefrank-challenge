@@ -15,20 +15,23 @@ type Inputs = {
 }
 
 const Home: NextPage = () => {
-  const [loading, setLoading] = useState(false)
-
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors, isSubmitting }
   } = useForm<Inputs>({ defaultValues: { email: '', password: '' } })
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     console.log(data)
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve('A')
+      }, 2000)
+    })
     // Router.push('/')
   }
 
-  if (loading) {
+  if (isSubmitting) {
     return <Loading />
   }
 
@@ -66,7 +69,6 @@ const Home: NextPage = () => {
             register={register('password', { required: 'Password is required' })}
             errors={errors.password}
           />
-
           <ButtonSubmit>Sign in</ButtonSubmit>
         </form>
       </main>
