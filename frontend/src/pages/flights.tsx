@@ -1,9 +1,10 @@
 import { ButtonFlightDetail } from '@components/buttons/ButtonFligthDetail'
+import { ButtonNewSearch } from '@components/buttons/ButtonNewSearch'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import Router from 'next/router'
 import { FormEvent } from 'react'
-import { FaCog, FaTimes } from 'react-icons/fa'
+import { FaCog, FaPlane, FaTimes } from 'react-icons/fa'
 
 const Home: NextPage = () => {
   function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -16,9 +17,11 @@ const Home: NextPage = () => {
       <header className="flex items-center gap-6 p-10 mb-3">
         <Image src="/logo-1.png" alt="logo" width={100} height={100} layout="fixed" />
 
-        <span className="text-3xl font-bold text-vivid-cerulean">
+        <span className="text-3xl font-bold text-vivid-cerulean grow">
           YOUR FLIGHTS FROM LAX TO CANCUN UNDER $150
         </span>
+
+        <ButtonNewSearch />
       </header>
 
       <main>
