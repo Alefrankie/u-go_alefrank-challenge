@@ -6,14 +6,26 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import Router from 'next/router'
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
+import { SubmitHandler, useForm } from 'react-hook-form'
+
+type Inputs = {
+  email: string
+  password: string
+}
 
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false)
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    Router.push('/')
-    // setLoading(true)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<Inputs>({ defaultValues: { email: '', password: '' } })
+
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data)
+    // Router.push('/')
   }
 
   if (loading) {
@@ -41,9 +53,20 @@ const Home: NextPage = () => {
           layout="fixed"
           className={styles.logo}
         />
-        <form className={styles.form} onSubmit={onSubmit}>
-          <Input placeholder="Email" />
-          <Input type="password" placeholder="Password" />
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            placeholder="Email"
+            register={register('email', { required: 'Email is required' })}
+            errors={errors.email}
+          />
+
+          <Input
+            type="password"
+            placeholder="Password"
+            register={register('password', { required: 'Password is required' })}
+            errors={errors.password}
+          />
+
           <ButtonSubmit>Sign in</ButtonSubmit>
         </form>
       </main>
