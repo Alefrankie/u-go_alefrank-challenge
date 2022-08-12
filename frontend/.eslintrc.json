@@ -1,0 +1,29 @@
+{
+  "extends": ["next/core-web-vitals", "standard", "prettier", "eslint:all"],
+  "plugins": ["prettier"],
+  "rules": {
+    "multiline-comment-style": "off",
+    "capitalized-comments": "off",
+    "sort-keys": "off",
+    "no-ternary": "off",
+    "sort-imports": "off",
+    "no-inline-comments": "off",
+    "line-comment-position": "off",
+    "no-console": "off",
+    "max-lines": "off",
+    "max-statements": "off",
+    "max-lines-per-function": "off",
+    "no-await-in-loop": "off",
+    "id-length": "off",
+    "no-negated-condition": "off",
+    "no-warning-comments": "off",
+    "no-plusplus": "off",
+    "class-methods-use-this": "off",
+    "func-style": "off",
+    "space-before-function-paren": "off",
+    "array-element-newline": "off",
+    "function-call-argument-newline": "off",
+    "no-magic-numbers": "off",
+    "max-len": "off"
+  }
+}
