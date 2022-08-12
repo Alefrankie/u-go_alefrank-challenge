@@ -1,0 +1,26 @@
+{
+  "name": "u-go_alefrank-challenge",
+  "version": "1.0.0",
+  "description": "app to reserve flights",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Alefrankie/u-go_alefrank-challenge.git"
+  },
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "co": "sui-mono commit"
+  },
+  "dependencies": {
+    "concurrently": "7.3.0"
+  },
+  "author": "Alefrank Martinez",
+  "license": "ISC",
+  "devDependencies": {
+    "@s-ui/mono": "^2.31.0"
+  }
+}
