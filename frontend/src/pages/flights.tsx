@@ -1,3 +1,4 @@
+import { ButtonFlightDetail } from '@components/buttons/ButtonFligthDetail'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import Router from 'next/router'
@@ -12,7 +13,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <header className="flex items-center mb-3 gap-6 p-10">
+      <header className="flex items-center gap-6 p-10 mb-3">
         <Image src="/logo-1.png" alt="logo" width={100} height={100} layout="fixed" />
 
         <span className="text-3xl font-bold text-vivid-cerulean">
@@ -21,44 +22,44 @@ const Home: NextPage = () => {
       </header>
 
       <main>
-        <div className="overflow-x-auto relative">
+        <div className="relative overflow-x-auto">
           <table className="w-full text-left text-gray-500">
-            <thead className="text-2xl text-gray-700 uppercase bg-gray-50 border">
+            <thead className="text-2xl text-gray-700 uppercase border bg-gray-50">
               <tr>
-                <th scope="col" className="py-3 px-6 border">
+                <th scope="col" className="px-8 py-3 border">
                   From/To
                 </th>
-                <th scope="col" className="py-3 px-6 border">
+                <th scope="col" className="px-8 py-3 border">
                   Cost $
                 </th>
-                <th scope="col" className="py-3 px-6 border">
+                <th scope="col" className="px-8 py-3 border">
                   Operated By
                 </th>
-                <th scope="col" className="py-3 px-6 border">
+                <th scope="col" className="px-8 py-3 border">
                   Date/Time
                 </th>
-                <th scope="col" className="py-3 px-6 border">
+                <th scope="col" className="px-8 py-3 border">
                   Travel Tim
                 </th>
-                <th scope="col" className="py-3 px-6 border">
-                  <FaCog />
+                <th scope="col" className="flex items-center gap-4 px-8 py-3 border">
+                  Options <FaCog />
                 </th>
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b text-2xl">
-                <th
+              <tr className="text-2xl border-b">
+                <td
                   scope="row"
-                  className="py-4 px-6 font-medium  whitespace-nowrap text-bright-turquoise"
+                  className="px-8 py-4 font-medium whitespace-nowrap text-bright-turquoise"
                 >
-                  Apple MacBook Pro 17
-                </th>
-                <td className="py-4 px-6 border font-semibold">LAX CANCUN</td>
-                <td className="py-4 px-6 border font-semibold">$190</td>
-                <td className="py-4 px-6 border font-semibold">$Delta</td>
-                <td className="py-4 px-6 border font-semibold">Delta</td>
-                <td className="py-4 px-6 border font-semibold">
-                  <FaTimes />
+                  LAX CANCUN
+                </td>
+                <td className="px-8 py-4 font-semibold border">$190</td>
+                <td className="px-8 py-4 font-semibold border">$Delta</td>
+                <td className="px-8 py-4 font-semibold border">Delta</td>
+                <td className="px-8 py-4 font-semibold border">Delta</td>
+                <td className="px-8 py-4 font-semibold border">
+                  <ButtonFlightDetail />
                 </td>
               </tr>
             </tbody>
