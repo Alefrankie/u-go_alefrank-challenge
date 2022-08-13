@@ -7,10 +7,16 @@ interface IProps {
   register: UseFormRegisterReturn<string>
   errors: FieldError | undefined
 }
-export function Input({ placeholder, type = 'text', register, errors }: IProps) {
+export function Input({ placeholder, type = 'text', register, errors, ...rest }: IProps) {
   return (
     <>
-      <input type={type} placeholder={placeholder} className={styles.input} {...register} />
+      <input
+        type={type}
+        placeholder={placeholder}
+        className={styles.input}
+        {...register}
+        {...rest}
+      />
       {errors?.message}
     </>
   )

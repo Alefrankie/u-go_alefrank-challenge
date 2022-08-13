@@ -8,7 +8,7 @@ async function post<T>(url: string, { body }: { body: T }): Promise<T> {
     throw new Error(message)
   }
 
-  const data: T = await res.json()
+  const data: T = await res.json()cd 
 
   return data
 }

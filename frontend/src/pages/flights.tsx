@@ -14,7 +14,7 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <header className="flex items-center gap-6 p-10 mb-3">
+      <header className="flex items-center gap-6 p-10 mb-3" test-id="header">
         <Image src="/logo-1.png" alt="logo" width={100} height={100} layout="fixed" />
 
         <span className="text-3xl font-bold text-vivid-cerulean grow">
