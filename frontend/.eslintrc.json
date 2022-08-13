@@ -24,6 +24,7 @@
     "array-element-newline": "off",
     "function-call-argument-newline": "off",
     "no-magic-numbers": "off",
-    "max-len": "off"
+    "max-len": "off",
+    "linebreak-style": "off"
   }
 }
