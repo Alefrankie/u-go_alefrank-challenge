@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "dev:frontend": "npm run dev --workspace=frontend",
+    "cy": "npm run cy --workspace=frontend",
     "sui": "sui-mono",
     "co": "sui-mono commit"
   },
