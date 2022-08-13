@@ -14,6 +14,7 @@ pnpm-lock.yaml
 
 # testing
 /coverage
+cypress/downloads
 
 # next.js
 /.next/
