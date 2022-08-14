@@ -10,6 +10,7 @@
     "cy": "cypress open"
   },
   "dependencies": {
+    "eslint-plugin-cypress": "^2.12.1",
     "next": "12.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",

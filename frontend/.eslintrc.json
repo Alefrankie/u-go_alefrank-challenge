@@ -1,6 +1,9 @@
 {
+  "env": {
+    "cypress/globals": true
+  },
   "extends": ["next/core-web-vitals", "standard", "prettier", "eslint:all"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "cypress"],
   "rules": {
     "multiline-comment-style": "off",
     "capitalized-comments": "off",
