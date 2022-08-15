@@ -1,34 +1,35 @@
 import { ConflictException, Injectable } from '@nestjs/common'
-import { InjectModel } from '@nestjs/mongoose'
-import { User, UserDocument } from '@users/domain/user.schema'
-import { Model } from 'mongoose'
+import * as bcrypt from 'bcrypt'
+import { UsersRepository } from '../../domain/user.repository'
+import { User } from '../../domain/user.schema'
 import { SignUpUserDto } from './sign-up-user.dto'
 
 @Injectable()
 export class SignUpService {
-  private defaultPassword = '123456'
-
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(private usersRepository: UsersRepository) {}
 
   async run({ email, password, fullName }: SignUpUserDto): Promise<User> {
-    if (!email || !password || !fullName) {
-      throw new ConflictException('Invalid user!')
-    }
+    await this.checkEmail(email)
 
-    const isExist = await this.userModel.findOne({ email })
+    return await this.usersRepository.create({
+      email,
+      password: await this.passwordHash(password),
+      fullName
+    })
+  }
+
+  async checkEmail(email: string): Promise<User> {
+    const isExist = await this.usersRepository.findByEmail(email)
 
     if (isExist) {
       throw new ConflictException(`User already registered!`)
     }
 
-    const userToCreate = await this.userModel.create({
-      email,
-      password,
-      fullName
-    })
+    return isExist
+  }
 
-    const userCreated = await userToCreate.save()
-
-    return userCreated
+  async passwordHash(password: string): Promise<string> {
+    const saltOrRounds = 10
+    return await bcrypt.hash(password, saltOrRounds)
   }
 }

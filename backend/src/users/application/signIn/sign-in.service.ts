@@ -1,8 +1,9 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common'
+import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
-import { User, UserDocument } from '@users/Domain/user.schema'
 import { Model } from 'mongoose'
+import { User, UserDocument } from '../../domain/user.schema'
 import { SignInUserDto } from './sign-in-user.dto'
+import * as bcrypt from 'bcrypt'
 
 @Injectable()
 export class SignInService {
@@ -11,18 +12,16 @@ export class SignInService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async run({ email, password }: SignInUserDto): Promise<User> {
-    if (!email || !password) {
-      throw new ConflictException('Invalid user!')
-    }
-
     const data = await this.userModel.findOne({ email })
 
     if (!data) {
-      throw new NotFoundException(`Credentials invalid!`)
+      throw new ConflictException(`Credentials invalid!`)
     }
 
-    if (data.password !== password) {
-      throw new ConflictException(`Incorrect password!`)
+    const isMatch = await bcrypt.compare(password, data.password)
+
+    if (!isMatch) {
+      throw new UnauthorizedException(`Incorrect password!`)
     }
 
     return data
