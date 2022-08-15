@@ -18,14 +18,12 @@ export class SignUpService {
     })
   }
 
-  async checkEmail(email: string): Promise<User> {
+  async checkEmail(email: string): Promise<void> {
     const isExist = await this.usersRepository.findByEmail(email)
 
     if (isExist) {
       throw new ConflictException(`User already registered!`)
     }
-
-    return isExist
   }
 
   async passwordHash(password: string): Promise<string> {

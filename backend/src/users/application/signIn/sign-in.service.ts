@@ -1,29 +1,36 @@
 import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common'
-import { InjectModel } from '@nestjs/mongoose'
-import { Model } from 'mongoose'
-import { User, UserDocument } from '../../domain/user.schema'
-import { SignInUserDto } from './sign-in-user.dto'
 import * as bcrypt from 'bcrypt'
+import { UsersRepository } from '../../domain/user.repository'
+import { User } from '../../domain/user.schema'
+import { SignInUserDto } from './sign-in-user.dto'
 
 @Injectable()
 export class SignInService {
-  private defaultPassword = '123456'
-
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
+  constructor(private usersRepository: UsersRepository) {}
 
   async run({ email, password }: SignInUserDto): Promise<User> {
-    const data = await this.userModel.findOne({ email })
+    const data = await this.checkEmail(email)
 
-    if (!data) {
+    await this.checkPassword(password, data.password)
+
+    return data
+  }
+
+  async checkEmail(email: string): Promise<User> {
+    const isExist = await this.usersRepository.findByEmail(email)
+
+    if (!isExist) {
       throw new ConflictException(`Credentials invalid!`)
     }
 
-    const isMatch = await bcrypt.compare(password, data.password)
+    return isExist
+  }
+
+  async checkPassword(password: string, hash: string): Promise<void> {
+    const isMatch = await bcrypt.compare(password, hash)
 
     if (!isMatch) {
       throw new UnauthorizedException(`Incorrect password!`)
     }
-
-    return data
   }
 }

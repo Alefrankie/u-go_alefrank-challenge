@@ -29,9 +29,8 @@ describe('SignUpService', () => {
     })
   })
 
-  it('should be null when not found user by email', async () => {
-    const data = await signUpService.checkEmail('noExist@noExist.com')
-    expect(data).toBe(null)
+  it('should be undefined when not found user by email', async () => {
+    expect(await signUpService.checkEmail('noExist@noExist.com')).toBeUndefined()
   })
 
   it('should return user already registered!', async () => {
