@@ -6,11 +6,33 @@ import { FormEvent } from 'react'
 import styles from '@styles/auth.module.css'
 import { Input } from '@components/Input/Input'
 import { ButtonSubmit } from '@components/buttons/ButtonSubmit'
+import { SubmitHandler, useForm } from 'react-hook-form'
+import { Loading } from '@components/Loading/Loading'
+
+type Inputs = {
+  name: string
+  email: string
+  password: string
+}
 
 const Home: NextPage = () => {
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault()
-    Router.push('/')
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting }
+  } = useForm<Inputs>({ defaultValues: { email: '', password: '' } })
+
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    console.log(data)
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve('A')
+      }, 2000)
+    })
+    // Router.push('/')
+  }
+  if (isSubmitting) {
+    return <Loading />
   }
 
   return (
@@ -21,7 +43,7 @@ const Home: NextPage = () => {
 
       <header className={styles.header}>
         <button type="button" onClick={() => Router.push('/auth/sign-in')}>
-          Sing In
+          Sign In
         </button>
       </header>
 
@@ -34,10 +56,23 @@ const Home: NextPage = () => {
           layout="fixed"
           className={styles.logo}
         />
-        <form className={styles.form} onSubmit={onSubmit}>
-          <Input placeholder="Your name" />
-          <Input placeholder="Email" />
-          <Input type="password" placeholder="Password" />
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          <Input
+            placeholder="Your name"
+            register={register('name', { required: 'Name is required' })}
+            errors={errors.name}
+          />
+          <Input
+            placeholder="Email"
+            register={register('email', { required: 'Email is required' })}
+            errors={errors.email}
+          />
+          <Input
+            type="password"
+            placeholder="Password"
+            register={register('password', { required: 'Password is required' })}
+            errors={errors.password}
+          />
           <ButtonSubmit>Create Account</ButtonSubmit>
         </form>
       </main>
