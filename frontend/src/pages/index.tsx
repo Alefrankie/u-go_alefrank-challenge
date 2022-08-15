@@ -10,8 +10,8 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { FaPlane } from 'react-icons/fa'
 
 type Inputs = {
-  from: string
-  to: string
+  origin: string
+  destination: string
   budget: number
 }
 
@@ -56,18 +56,18 @@ const Home: NextPage = () => {
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <Input
             placeholder="From"
-            register={register('from', { required: 'Email is required' })}
-            errors={errors.from}
+            register={register('origin', { required: 'Origin is required' })}
+            errors={errors.origin}
           />
           <Input
             placeholder="To"
-            register={register('to', { required: 'Destiny is required' })}
-            errors={errors.to}
+            register={register('destination', { required: 'Destination is required' })}
+            errors={errors.destination}
           />
           <Input
             placeholder="Max $"
             type="number"
-            register={register('budget', { required: 'Email is required' })}
+            register={register('budget', { required: 'Budget is required' })}
             errors={errors.budget}
             {...{ step: '0.01' }}
           />
