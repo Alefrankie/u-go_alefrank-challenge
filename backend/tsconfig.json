@@ -10,6 +10,9 @@
     "sourceMap": false,
     "outDir": "./dist",
     "baseUrl": "./",
+    "paths": {
+      "@users/*": ["src/users/*"]
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": false,
