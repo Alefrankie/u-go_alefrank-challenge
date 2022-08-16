@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
+import { AirlinesModule } from 'src/airlines/airlines.module'
 import { AirportsModule } from 'src/airports/airports.module'
 import { CitiesModule } from 'src/cities/cities.module'
 import { UserModule } from '../users/user.module'
@@ -12,7 +13,8 @@ import { UserModule } from '../users/user.module'
     ),
     UserModule,
     AirportsModule,
-    CitiesModule
+    CitiesModule,
+    AirlinesModule
   ],
   controllers: [],
   providers: []

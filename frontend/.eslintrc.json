@@ -29,6 +29,7 @@
     "no-magic-numbers": "off",
     "max-len": "off",
     "linebreak-style": "off",
-    "react-hooks/rules-of-hooks": "off"
+    "react-hooks/rules-of-hooks": "off",
+    "no-alert": "off"
   }
 }

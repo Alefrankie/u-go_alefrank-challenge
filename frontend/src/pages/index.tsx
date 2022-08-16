@@ -30,8 +30,22 @@ const Home: NextPage = () => {
     watch
   } = useForm<Inputs>({ defaultValues: { origin: '', destination: '', budget: 0 } })
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const res = await useFetch.post()
+  const onSubmit: SubmitHandler<Inputs> = async ({ origin, destination, budget }) => {
+    try {
+      const res = await useFetch.post('http://localhost:3001/api/airlines/flights', {
+        body: {
+          origin,
+          destination,
+          budget
+        }
+      })
+
+      if (res) {
+        Router.push('/flights')
+      }
+    } catch (error: any) {
+      alert(error.message)
+    }
   }
 
   const onOriginKeyUp = () => useFindCitiesByKey(watch('origin'), setOrigins)

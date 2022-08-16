@@ -1,3 +1,4 @@
+/* eslint-disable no-return-await */
 async function post<T>(url: string, { body }: { body: any }): Promise<T> {
   const res = await fetch(url, {
     method: 'POST',
@@ -7,14 +8,13 @@ async function post<T>(url: string, { body }: { body: any }): Promise<T> {
     body: JSON.stringify(body)
   })
 
-  // const message = await res.text()
-  // if (res.status >= 400) {
-  //   throw new Error(message)
-  // }
+  if (res.status >= 400) {
+    const error: Error = await res.json()
 
-  const data: T = await res.json()
+    throw new Error(error.message)
+  }
 
-  return data
+  return await res.json()
 }
 
 export const useFetch = { post }
