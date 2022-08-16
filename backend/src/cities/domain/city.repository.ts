@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
-import { AIRPORTS } from '../../airports/domain/AIRPORTS'
 import { CITIES } from './CITIES'
 import { ICity } from './ICity'
+// import { AIRPORTS } from '../../airports/domain/AIRPORTS'
 
 @Injectable()
 export class CitiesRepository {
@@ -13,7 +13,7 @@ export class CitiesRepository {
         e.code.toLocaleLowerCase().includes(key.toLocaleLowerCase()) ||
         e.name.toLocaleLowerCase().includes(key.toLocaleLowerCase())
       ) {
-        e.airports = AIRPORTS.filter((airport) => airport.cityCode.includes(e.code))
+        // e.airports = AIRPORTS.filter((airport) => airport.cityCode.includes(e.code))
         return e
       }
 

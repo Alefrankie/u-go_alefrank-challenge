@@ -1,11 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common'
+import { Controller, Post } from '@nestjs/common'
 
 @Controller('/airlines')
-export class UserController {
+export class AirlinesController {
   constructor() {}
 
-  @Post('/')
-  async signIn() {
+  @Post('/flights')
+  async flights() {
     return null
   }
 }
