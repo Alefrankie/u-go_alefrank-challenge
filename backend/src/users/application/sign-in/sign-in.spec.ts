@@ -1,6 +1,6 @@
 import { ConflictException, UnauthorizedException } from '@nestjs/common'
 import { Test, TestingModule } from '@nestjs/testing'
-import { AppModule } from '../../../app/app.module'
+import { AppModule } from '../../../_app/app.module'
 import { UsersRepository } from '../../domain/user.repository'
 import { SignInService } from './sign-in.service'
 

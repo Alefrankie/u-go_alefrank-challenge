@@ -29,6 +29,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'no-useless-constructor': 'off',
-    'new-cap': 'off'
+    'new-cap': 'off',
+    '@typescript-eslint/no-empty-function': 'off'
   }
 }

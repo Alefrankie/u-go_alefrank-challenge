@@ -1,8 +1,8 @@
 import { ConflictException } from '@nestjs/common'
 import { MongooseModule } from '@nestjs/mongoose'
 import { Test, TestingModule } from '@nestjs/testing'
-import { SignInService } from '../application/signIn/sign-in.service'
-import { SignUpService } from '../application/signUp/sign-up.service'
+import { SignInService } from '../application/sign-in/sign-in.service'
+import { SignUpService } from '../application/sign-up/sign-up.service'
 import { User, UserSchema } from '../domain/user.schema'
 import { UserController } from './user.controller'
 

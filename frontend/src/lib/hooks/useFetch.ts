@@ -1,14 +1,18 @@
 async function post<T>(url: string, { body }: { body: T }): Promise<T> {
   const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify(body)
   })
 
-  const message = await res.text()
-  if (res.status >= 400) {
-    throw new Error(message)
-  }
+  // const message = await res.text()
+  // if (res.status >= 400) {
+  //   throw new Error(message)
+  // }
 
-  const data: T = await res.json()cd 
+  const data: T = await res.json()
 
   return data
 }

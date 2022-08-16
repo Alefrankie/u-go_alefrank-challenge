@@ -1,8 +1,8 @@
 import { Body, Controller, Post } from '@nestjs/common'
-import { SignInUserDto } from '../application/signIn/sign-in-user.dto'
-import { SignInService } from '../application/signIn/sign-in.service'
-import { SignUpUserDto } from '../application/signUp/sign-up-user.dto'
-import { SignUpService } from '../application/signUp/sign-up.service'
+import { SignInUserDto } from '../application/sign-in/sign-in-user.dto'
+import { SignInService } from '../application/sign-in/sign-in.service'
+import { SignUpUserDto } from '../application/sign-up/sign-up-user.dto'
+import { SignUpService } from '../application/sign-up/sign-up.service'
 
 @Controller('/users')
 export class UserController {
