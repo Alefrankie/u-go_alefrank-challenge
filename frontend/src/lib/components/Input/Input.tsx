@@ -14,6 +14,7 @@ export function Input({ placeholder, type = 'text', register, errors, ...rest }:
         type={type}
         placeholder={placeholder}
         className={styles.input}
+        list={placeholder}
         {...register}
         {...rest}
       />

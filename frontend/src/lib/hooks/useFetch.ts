@@ -1,4 +1,4 @@
-async function post<T>(url: string, { body }: { body: T }): Promise<T> {
+async function post<T>(url: string, { body }: { body: any }): Promise<T> {
   const res = await fetch(url, {
     method: 'POST',
     headers: {
