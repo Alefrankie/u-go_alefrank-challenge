@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing'
+import { AirportsRepository } from 'src/airports/domain/airport.repository'
 import { AppModule } from '../../../_app/app.module'
-import { AirportsRepository } from '../../domain/airport.repository'
-import { FindFlights } from './find-flights.service'
+import { FindFlightsService } from './find-flights.service'
 
 describe('SignInService', () => {
-  let filterByKeyService: FindFlights
+  let filterByKeyService: FindFlightsService
   let airportsRepository: AirportsRepository
   let app: TestingModule
 
@@ -15,26 +15,8 @@ describe('SignInService', () => {
       providers: []
     }).compile()
 
-    filterByKeyService = app.get<FindFlights>(FindFlights)
+    filterByKeyService = app.get<FindFlightsService>(FindFlightsService)
     airportsRepository = app.get<AirportsRepository>(AirportsRepository)
-
-    await airportsRepository.removeAll()
-  })
-
-  it("should return credentials invalid when I'm not registered", async () => {
-    expect(
-      filterByKeyService.run({
-        key: 'undefined@undefined.com'
-      })
-    ).rejects.toThrow('Credentials invalid!')
-  })
-
-  it("should return Incorrect password when I'm registered", async () => {
-    expect(
-      filterByKeyService.run({
-        key: 'undefined@undefined.com'
-      })
-    ).rejects.toThrow('Incorrect password!')
   })
 
   afterAll(async () => {
