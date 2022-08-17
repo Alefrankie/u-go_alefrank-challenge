@@ -3,8 +3,9 @@ import duration from 'dayjs/plugin/duration'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { FaCog } from 'react-icons/fa'
 import { useFlightsContext } from '../contexts/FlightsContext'
-import { ButtonFlightDetail } from './buttons/ButtonFlightDetail'
+import { useCurrencyFormat } from '../hooks/useFormatCurrency'
 import { Loading } from './Loading/Loading'
+import { ModalFlightsDetails } from './ModalFlightDetail'
 dayjs.extend(duration)
 dayjs.extend(relativeTime)
 
@@ -58,7 +59,7 @@ export function TablePrices() {
                 >
                   {e.origin} / {e.destination}
                 </td>
-                <td className="px-8 py-4 font-semibold border">{e.price}</td>
+                <td className="px-8 py-4 font-semibold border">{useCurrencyFormat(e.price)}</td>
                 <td className="px-8 py-4 font-semibold border">{e.main_airline.name}</td>
                 <td className="px-8 py-4 font-semibold border">
                   {dayjs(e.depart_date).format('DD/MM/YYYY HH:mm')}
@@ -67,7 +68,7 @@ export function TablePrices() {
                   {dayjs.duration(e.durationInHours, 'hours').humanize(false)}
                 </td>
                 <td className="px-8 py-4 font-semibold border">
-                  <ButtonFlightDetail />
+                  <ModalFlightsDetails price={e} />
                 </td>
               </tr>
             ))}
