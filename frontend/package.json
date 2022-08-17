@@ -10,12 +10,14 @@
     "cy": "cypress open"
   },
   "dependencies": {
+    "dayjs": "^1.11.5",
     "next": "12.2.4",
     "noty": "3.2.0-beta-deprecated",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.34.0",
     "react-icons": "4.4.0",
+    "react-modal": "^3.15.1",
     "standard": "17.0.0"
   },
   "devDependencies": {

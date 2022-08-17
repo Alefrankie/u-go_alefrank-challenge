@@ -9,40 +9,41 @@ import Router from 'next/router'
 import { useState } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { FaPlane } from 'react-icons/fa'
-import { useFetch } from 'src/lib/hooks/useFetch'
+import { useFlightsContext } from 'src/lib/contexts/FlightsContext'
+import { useFetchFlights } from 'src/lib/hooks/useFetchFlights'
 import { useFindCitiesByKey } from 'src/lib/hooks/useFindCitiesByKey'
 import { ICity } from 'src/lib/interfaces/ICity'
 
 type Inputs = {
   origin: string
   destination: string
-  budget: number
+  budget: number | null
 }
 
 const Home: NextPage = () => {
+  const { setState } = useFlightsContext()
   const [origins, setOrigins] = useState<ICity[]>([])
   const [destinations, setDestinations] = useState<ICity[]>([])
-
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
     watch
-  } = useForm<Inputs>({ defaultValues: { origin: '', destination: '', budget: 0 } })
+  } = useForm<Inputs>({
+    defaultValues: { origin: 'Caracas', destination: 'Madrid', budget: 10000 }
+  })
 
   const onSubmit: SubmitHandler<Inputs> = async ({ origin, destination, budget }) => {
     try {
-      const res = await useFetch.post('http://localhost:3001/api/airlines/flights', {
-        body: {
-          origin,
-          destination,
-          budget
-        }
+      const data = await useFetchFlights({
+        origin,
+        destination,
+        budget
       })
 
-      if (res) {
-        Router.push('/flights')
-      }
+      setState({ prices: data.prices })
+
+      Router.push(`/flights?origin=${origin}&destination=${destination}&budget=${budget}`)
     } catch (error: any) {
       alert(error.message)
     }

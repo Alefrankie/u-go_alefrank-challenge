@@ -30,6 +30,7 @@
     "max-len": "off",
     "linebreak-style": "off",
     "react-hooks/rules-of-hooks": "off",
-    "no-alert": "off"
+    "no-alert": "off",
+    "array-bracket-newline": "off"
   }
 }
