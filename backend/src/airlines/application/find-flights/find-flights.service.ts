@@ -9,7 +9,7 @@ export class FindFlightsService {
   constructor(private airlinesRepository: AirlinesRepository) {}
 
   async run({ origin, destination, budget }: FindFlightsDTO): Promise<any> {
-    const data = await this.airlinesRepository.findFlights(origin, destination, budget)
+    const data = await this.airlinesRepository.findFlights(origin, destination)
 
     this.checkBudget(data.prices, budget)
 
