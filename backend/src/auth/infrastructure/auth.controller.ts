@@ -5,7 +5,7 @@ import { SignUpUserDto } from '../application/sign-up/sign-up-user.dto'
 import { SignUpService } from '../application/sign-up/sign-up.service'
 
 @Controller('/auth')
-export class UserController {
+export class AuthController {
   constructor(private signUpService: SignUpService, private signInService: SignInService) {}
 
   @Post('sign-in')

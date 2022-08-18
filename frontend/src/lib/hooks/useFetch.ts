@@ -1,12 +1,17 @@
+import { getToken } from './useToken'
+
 /* eslint-disable no-return-await */
 const headers = new Headers({
   'Content-Type': 'application/json',
-  Authorization: 'Bearer YWxhZGRpbjpvcGVuc2VzYW1l'
+  Authorization: 'Bearer '
 })
 async function post<T = any>(url: string, { body }: { body: any }): Promise<T> {
   const res = await fetch(url, {
     method: 'POST',
-    headers,
+    headers: new Headers({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getToken()}`
+    }),
     body: JSON.stringify(body)
   })
 
