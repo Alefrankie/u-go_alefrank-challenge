@@ -1,13 +1,18 @@
-service: serverless-example
+org: crowdedturkey
+console: true
+service: u-go-alefrank-challenge-backend
+
+useDotenv: true
 
 plugins:
   - serverless-offline
-  - serverless-plugin-optimize
-  # - serverless-plugin-typescript
 
 provider:
   name: aws
   runtime: nodejs16.x
+  environment:
+    DATABASE_URL: ${env:DATABASE_URL}
+    NODE_ENV: production
 
 functions:
   main:
