@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
 import { AirlinesModule } from 'src/airlines/airlines.module'
 import { AirportsModule } from 'src/airports/airports.module'
+import { AuthModule } from 'src/auth/auth.module'
 import { CitiesModule } from 'src/cities/cities.module'
 import { UserModule } from '../users/user.module'
 @Module({
@@ -11,6 +12,7 @@ import { UserModule } from '../users/user.module'
     MongooseModule.forRoot(
       process.env.NODE_ENV === 'test' ? process.env.TEST_DATABASE_URL : process.env.DATABASE_URL
     ),
+    AuthModule,
     UserModule,
     AirportsModule,
     CitiesModule,
