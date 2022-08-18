@@ -1,10 +1,23 @@
-import '../../styles/globals.css'
 import type { AppProps } from 'next/app'
-import { UserProvider } from '../lib/contexts/UserContext'
-import { FlightsContextProvider } from '../lib/contexts/FlightsContext'
 import Head from 'next/head'
+import Router from 'next/router'
+import { useEffect } from 'react'
+import { getToken } from 'src/lib/hooks/useToken'
+import '../../styles/globals.css'
+import { FlightsContextProvider } from '../lib/contexts/FlightsContext'
+import { UserProvider } from '../lib/contexts/UserContext'
 
 function MyApp({ Component, pageProps }: AppProps) {
+  // Simple authentication
+  useEffect(() => {
+    if (!getToken() && !Router.pathname.includes('/auth')) {
+      Router.push('/auth/sign-in')
+    }
+    if (getToken() && Router.pathname.includes('/auth')) {
+      Router.push('/')
+    }
+  }, [])
+
   return (
     <>
       <Head>

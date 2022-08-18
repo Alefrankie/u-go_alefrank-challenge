@@ -31,6 +31,7 @@
     "linebreak-style": "off",
     "react-hooks/rules-of-hooks": "off",
     "no-alert": "off",
-    "array-bracket-newline": "off"
+    "array-bracket-newline": "off",
+    "implicit-arrow-linebreak": "off"
   }
 }

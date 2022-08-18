@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { MongooseModule } from '@nestjs/mongoose'
-import { AirlinesModule } from 'src/airlines/airlines.module'
-import { AirportsModule } from 'src/airports/airports.module'
-import { AuthModule } from 'src/auth/auth.module'
-import { CitiesModule } from 'src/cities/cities.module'
+import { AirlinesModule } from '../airlines/airlines.module'
+import { AirportsModule } from '../airports/airports.module'
+import { AuthModule } from '../auth/auth.module'
+import { CitiesModule } from '../cities/cities.module'
 import { UserModule } from '../users/user.module'
 @Module({
   imports: [

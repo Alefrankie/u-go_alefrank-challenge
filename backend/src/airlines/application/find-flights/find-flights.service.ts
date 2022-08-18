@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
-import * as dayjs from 'dayjs'
+import dayjs from 'dayjs'
 import { CITIES } from 'src/cities/domain/CITIES'
 import { AirlinesRepository } from '../../domain/airline.repository'
 import { AIRLINES } from '../../domain/AIRLINES'

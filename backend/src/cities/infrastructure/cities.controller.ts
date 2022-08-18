@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common'
 import { JwtAuthGuard } from 'src/auth/application/guards/jwt-auth.guards'
 import { FilterByKeyDTO } from '../application/filter-by-key/filter-by-key.dto'
 import { FilterByKeyService } from '../application/filter-by-key/filter-by-key.service'
@@ -7,6 +7,11 @@ import { FilterByKeyService } from '../application/filter-by-key/filter-by-key.s
 @Controller('/cities')
 export class CitiesController {
   constructor(private filterByKeyService: FilterByKeyService) {}
+
+  @Get('/')
+  async get() {
+    return 'CitiesController works!'
+  }
 
   @Post('/filter')
   async filter(@Body() body: FilterByKeyDTO) {

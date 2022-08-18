@@ -7,6 +7,8 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Router from 'next/router'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useFetch } from 'src/lib/hooks/useFetch'
+import { setToken } from 'src/lib/hooks/useToken'
 
 type Inputs = {
   email: string
@@ -20,14 +22,20 @@ const Home: NextPage = () => {
     formState: { errors, isSubmitting }
   } = useForm<Inputs>({ defaultValues: { email: '', password: '' } })
 
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    console.log(data)
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve('A')
-      }, 2000)
-    })
-    // Router.push('/')
+  const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
+    try {
+      const data = await useFetch.post('http://localhost:3001/api/auth/sign-in', {
+        body: {
+          email,
+          password
+        }
+      })
+
+      setToken(data.token)
+      Router.push('/')
+    } catch (error: any) {
+      alert(error.message)
+    }
   }
 
   if (isSubmitting) {

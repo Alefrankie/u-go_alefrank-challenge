@@ -12,6 +12,7 @@ import { FaPlane } from 'react-icons/fa'
 import { useFlightsContext } from 'src/lib/contexts/FlightsContext'
 import { useFetchFlights } from 'src/lib/hooks/useFetchFlights'
 import { useFindCitiesByKey } from 'src/lib/hooks/useFindCitiesByKey'
+import { deleteToken } from 'src/lib/hooks/useToken'
 import { ICity } from 'src/lib/interfaces/ICity'
 
 type Inputs = {
@@ -53,6 +54,11 @@ const Home: NextPage = () => {
 
   const onDestinationKeyUp = () => useFindCitiesByKey(watch('destination'), setDestinations)
 
+  const signOut = () => {
+    Router.push('/auth/sign-in')
+    deleteToken()
+  }
+
   if (isSubmitting) {
     return <Loading />
   }
@@ -60,7 +66,7 @@ const Home: NextPage = () => {
   return (
     <>
       <header className={styles.header}>
-        <button type="button" onClick={() => Router.push('/auth/sign-in')}>
+        <button type="button" onClick={signOut}>
           Log Out
         </button>
       </header>
