@@ -30,11 +30,19 @@ const Home: NextPage = () => {
     formState: { errors, isSubmitting },
     watch
   } = useForm<Inputs>({
-    defaultValues: { origin: '', destination: '', budget: null }
+    mode: 'onChange',
+    reValidateMode: 'onChange',
+    criteriaMode: 'all',
+    shouldFocusError: true
   })
 
   const onSubmit: SubmitHandler<Inputs> = async ({ origin, destination, budget }) => {
     try {
+      if (!origin || !destination || !budget) {
+        alert('Please fill all fields')
+        return
+      }
+
       const data = await useFetchFlights({
         origin,
         destination,
@@ -89,10 +97,11 @@ const Home: NextPage = () => {
 
           <Input
             placeholder="Max $"
-            type="text"
+            type="number"
             register={register('budget', { required: 'Budget is required' })}
             errors={errors.budget}
           />
+
           <ButtonSubmit>
             Search flights <FaPlane style={{ transform: 'rotate(-45deg)' }} />
           </ButtonSubmit>

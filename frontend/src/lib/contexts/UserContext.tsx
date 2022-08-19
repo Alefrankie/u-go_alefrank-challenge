@@ -1,4 +1,3 @@
-import jwt from 'jwt-simple'
 import React, {
   createContext,
   ReactNode,
