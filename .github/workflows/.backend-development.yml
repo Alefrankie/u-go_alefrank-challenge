@@ -7,10 +7,25 @@ jobs:
   lambda:
     runs-on: ubuntu-20.04
     steps:
-      - uses: stcalica/update-lambda
+      - name: 🚚 Checkout
+        uses: actions/checkout@master
+
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 16.13.0
+        uses: actions/setup-node@v2
         with:
-          package: lambda.zip
-          function-name: main
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
-          AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+          node-version: "16.13.0"
+
+      - name: ⚙️ Install Dependencies
+        run: npm i
+
+      # - name: 🚚 Deploying to aws
+      #   uses: stcalica/update-lambda
+      #   with:
+      #     package: lambda.zip
+      #     function-name: main
+      #     AWS_REGION: ${{ secrets.AWS_REGION }}
+      #     AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
+      #     AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
