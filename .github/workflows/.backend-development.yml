@@ -21,14 +21,16 @@ jobs:
       # - name: ⚙️ Deploying backend to aws
       #   run: npm run deploy:aws:backend
 
-      - name: 🚚 Deploying to aws
-      - uses: actions/checkout@master
-      - run: echo "THIS IS A TEST PACKAGE" > file.txt
-      - run: zip lambda.zip file.txt
-      - uses: stcalica/update-lambda
+      - name: ⚙️ Zip
+        uses: actions/checkout@master
+        run: echo "THIS IS A TEST PACKAGE" > file.txt
+
+      - name: ⚙️ Deploy to aws
+        uses: stcalica/update-lambda
+        run: zip lambda.zip file.txt
         with:
-          package: dist/lambda.zip
-          function-name: main
+          package: lambda.zip
+          function-name: TEST-FUNCTION
           AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
