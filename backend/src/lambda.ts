@@ -14,10 +14,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule)
   app.enableCors({
     credentials: true,
-    origin: [
-      'http://localhost:3000',
-      'https://u-go-alefrank-challenge-paq14z2wt-alefrankie.vercel.app'
-    ],
+    origin: ['http://localhost:3000', 'https://u-go-alefrank-challenge.vercel.app/'],
     allowedHeaders:
       'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe, Authorization, Keep-Alive',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
