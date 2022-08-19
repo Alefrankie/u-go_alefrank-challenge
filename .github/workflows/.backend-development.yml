@@ -21,13 +21,10 @@ jobs:
       # - name: ⚙️ Deploying backend to aws
       #   run: npm run deploy:aws:backend
 
-      - name: ⚙️ Zip
-        uses: actions/checkout@master
-        run: echo "THIS IS A TEST PACKAGE" > file.txt
-
-      - name: ⚙️ Deploy to aws
-        uses: stcalica/update-lambda
-        run: zip lambda.zip file.txt
+      - uses: actions/checkout@master
+      - run: echo "THIS IS A TEST PACKAGE" > file.txt
+      - run: zip lambda.zip file.txt
+      - uses: stcalica/update-lambda
         with:
           package: lambda.zip
           function-name: TEST-FUNCTION
