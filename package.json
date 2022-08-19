@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "dev:frontend": "npm run dev --workspace=frontend",
+    "deploy:aws:backend": "npm run deploy:aws --workspace=backend",
     "cy": "npm run cy --workspace=frontend",
     "sui": "sui-mono",
     "co": "sui-mono commit"

@@ -1,0 +1,25 @@
+name: Deploy 🚀 Backend ✅
+
+on:
+  push:
+    branches: [main]
+jobs:
+  lambda:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⚙️ Install Dependencies
+        run: npm ci
+
+      - name: 🚚 Zip
+      - run: npm run deploy:aws:backend
+
+      # - name: 🚚 Deploying to aws
+      # - uses: actions/checkout@master
+      # - run: zip lambda.zip file.txt
+      # - uses: stcalica/update-lambda
+      #   with:
+      #     package: dist/lambda.zip
+      #     function-name: main
+      #     AWS_REGION: ${{ secrets.AWS_REGION }}
+      #     AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
+      #     AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
