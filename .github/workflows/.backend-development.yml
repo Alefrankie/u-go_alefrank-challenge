@@ -16,7 +16,8 @@ jobs:
           node-version: "16.13.0"
 
       - name: 🚚 Deploying to aws
-        uses: stcalica/update-lambda
+        uses: actions/checkout@master
+        run: echo "THIS IS A TEST PACKAGE" > file.txt
         # with:
         #   package: lambda.zip
         #   function-name: main
