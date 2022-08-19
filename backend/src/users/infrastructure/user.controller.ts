@@ -9,6 +9,7 @@ export class UserController {
   works() {
     return 'UsersController works!'
   }
+
   @Get('/who-am-i')
   @UseGuards(JwtAuthGuard)
   run(@GetUser() user: User) {

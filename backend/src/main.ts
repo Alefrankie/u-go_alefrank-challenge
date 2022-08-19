@@ -9,7 +9,7 @@ async function bootstrap() {
     credentials: true,
     origin: ['http://localhost:3000'],
     allowedHeaders:
-      'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe, Authorization',
+      'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept, Observe, Authorization, Keep-Alive',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS'
   })
 

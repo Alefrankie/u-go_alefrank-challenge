@@ -11,7 +11,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "deploy:aws": "tsc && nest build && sls deploy --stage dev --region us-east-1",
-    "dev": "nest build && nest start --watch",
+    "dev": "npm run prebuild && nest start --watch",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
