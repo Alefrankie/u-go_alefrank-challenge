@@ -1,8 +1,8 @@
+import { ButtonSignOut } from '@components/buttons/ButtonSignOut'
 import { ButtonSubmit } from '@components/buttons/ButtonSubmit'
 import { CitiesList } from '@components/CitiesList'
 import { Input } from '@components/Input/Input'
 import { Loading } from '@components/Loading/Loading'
-import styles from '@styles/home.module.css'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import Router from 'next/router'
@@ -12,7 +12,6 @@ import { FaPlane } from 'react-icons/fa'
 import { useFlightsContext } from 'src/lib/contexts/FlightsContext'
 import { useFetchFlights } from 'src/lib/hooks/useFetchFlights'
 import { useFindCitiesByKey } from 'src/lib/hooks/useFindCitiesByKey'
-import { deleteToken } from 'src/lib/hooks/useToken'
 import { ICity } from 'src/lib/interfaces/ICity'
 
 type Inputs = {
@@ -54,33 +53,22 @@ const Home: NextPage = () => {
 
   const onDestinationKeyUp = () => useFindCitiesByKey(watch('destination'), setDestinations)
 
-  const signOut = () => {
-    Router.push('/auth/sign-in')
-    deleteToken()
-  }
-
   if (isSubmitting) {
     return <Loading />
   }
 
   return (
     <>
-      <header className={styles.header}>
-        <button type="button" onClick={signOut}>
-          Log Out
-        </button>
+      <header className="flex flex-row-reverse p-20 mb-12">
+        <ButtonSignOut />
       </header>
 
-      <main className={styles.main}>
-        <Image
-          src="/logo-2.png"
-          alt="logo"
-          width={400}
-          height={500}
-          layout="fixed"
-          className={styles.logo}
-        />
-        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <main className="flex items-center justify-around">
+        <Image src="/logo-2.png" alt="logo" width={400} height={500} layout="fixed" />
+        <form
+          className="flex flex-col items-center justify-center gap-16 w-fit"
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <Input
             placeholder="From"
             register={register('origin', { required: 'Origin is required' })}

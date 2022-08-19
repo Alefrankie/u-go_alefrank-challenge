@@ -15,4 +15,5 @@ export interface IPrice {
   trip_class: number
   arrival_date: string
   durationInHours: number
+  flightNumber: number
 }

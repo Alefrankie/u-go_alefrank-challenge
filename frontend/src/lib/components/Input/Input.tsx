@@ -1,5 +1,4 @@
 import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
-import styles from './styles.module.css'
 
 interface IProps {
   placeholder: string
@@ -13,7 +12,7 @@ export function Input({ placeholder, type = 'text', register, errors, ...rest }:
       <input
         type={type}
         placeholder={placeholder}
-        className={styles.input}
+        className="w-full p-4 text-3xl text-center border rounded-full focus:outline-none border-vivid-cerulean placeholder:text-vivid-cerulean text-vivid-cerulean"
         list={placeholder}
         {...register}
         {...rest}

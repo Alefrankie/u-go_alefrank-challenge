@@ -31,7 +31,7 @@ export function ModalFlightsDetails({ price }: IProps) {
       <button
         type="submit"
         onClick={openModal}
-        className="flex items-center justify-center p-2 gap-3 rounded-full bg-vivid-cerulean text-white font-bold w-full hover:bg-[#5abff9] transition-all"
+        className="flex items-center justify-center p-2 gap-3 rounded-full bg-vivid-cerulean text-white font-bold w-auto px-10 hover:bg-[#5abff9] transition-all"
       >
         BOOK NOW!
       </button>
@@ -59,17 +59,18 @@ export function ModalFlightsDetails({ price }: IProps) {
         </div>
 
         <div className="flex flex-col gap-8 pb-16 pl-10 text-3xl font-semibold">
-          <div>Flight Number: {}</div>
           <div>
             From - To:{price.origin} / {price.destination}
           </div>
           <div>Date: {dayjs(price.depart_date).format('DD/MM/YYYY HH:mm')}</div>
           <div>Time: {dayjs.duration(price.durationInHours, 'hours').humanize(false)}</div>
+          <div>Flight Number: {price.flightNumber}</div>
           <div>Cost: {useCurrencyFormat(price.price)}</div>
         </div>
 
         <div className="flex justify-center">
           <button
+            onClick={closeModal}
             type="submit"
             className="flex items-center justify-center p-2 gap-3 rounded-full bg-vivid-cerulean w-40 text-white font-bold hover:bg-[#5abff9] transition-all"
           >

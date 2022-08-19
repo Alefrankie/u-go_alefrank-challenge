@@ -7,7 +7,7 @@ export function useFindCitiesByKey(
   key: string,
   setState: (value: SetStateAction<ICity[]>) => void
 ): void {
-  if (!key || key.length < 3) {
+  if (!key || key.length < 1) {
     return
   }
 
