@@ -59,6 +59,7 @@ export function ModalFlightsDetails({ price }: IProps) {
         </div>
 
         <div className="flex flex-col gap-8 pb-16 pl-10 text-3xl font-semibold">
+          <div>Flight Number: {}</div>
           <div>
             From - To:{price.origin} / {price.destination}
           </div>
