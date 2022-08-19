@@ -5,7 +5,14 @@ service: u-go-alefrank-challenge-backend
 useDotenv: true
 
 plugins:
+  - serverless-plugin-monorepo
+  - serverless-plugin-common-excludes
   - serverless-offline
+  - serverless-plugin-include-dependencies
+
+package:
+  patterns:
+    - "!frontend/**"
 
 provider:
   name: aws
@@ -15,12 +22,12 @@ provider:
     NODE_ENV: production
 
 functions:
-  main:
-    handler: dist/lambda.handler
+  backend:
+    handler: backend/dist/lambda.handler
     events:
       - http:
           method: ANY
           path: /
       - http:
           method: ANY
-          path: '{proxy+}'
+          path: "{proxy+}"
