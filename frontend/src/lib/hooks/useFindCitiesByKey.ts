@@ -23,5 +23,5 @@ export function useFindCitiesByKey(
     })
 
     setState(data)
-  }, 500)
+  }, 200)
 }
