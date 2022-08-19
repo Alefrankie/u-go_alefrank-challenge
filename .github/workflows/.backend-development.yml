@@ -18,10 +18,12 @@ jobs:
         with:
           node-version: "16.13.0"
 
-      - name: 🚚 Deploying to aws
-        uses: stcalica/update-lambda
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          function-name: main
           AWS_REGION: ${{ secrets.AWS_REGION }}
           AWS_SECRET_ID: ${{ secrets.AWS_SECRET_ID }}
           AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+
+      - name: Deploy to aws
+        run: npm run deploy:aws:backend
