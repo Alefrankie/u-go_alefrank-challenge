@@ -16,7 +16,7 @@ export function useFindCitiesByKey(
       clearTimeout(timeoutId)
     }
 
-    const data = await useFetch.post<ICity[]>('http://localhost:3001/api/cities/filter', {
+    const data = await useFetch.post<ICity[]>('/cities/filter', {
       body: {
         key
       }

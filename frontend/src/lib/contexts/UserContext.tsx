@@ -1,7 +1,15 @@
-import React, { createContext, ReactNode, useContext, useEffect, useMemo, useReducer } from 'react'
+import jwt from 'jwt-simple'
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer
+} from 'react'
 import { useFetch } from '../hooks/useFetch'
 import { getToken } from '../hooks/useToken'
-import jwt from 'jwt-simple'
 interface IUseUserContext {
   isLoading: boolean
   setState: any
@@ -24,12 +32,19 @@ export function UserProvider({ children }: Props): React.ReactElement {
     return { ...prevState, ...state }
   }
 
+  const whoAmI = useCallback(async () => {
+    const data = await useFetch.get('/users/who-am-i')
+    setState({ user: data })
+    console.log(data)
+  }, [])
+
   useEffect((): void => {
     if (getToken()) {
       const payload = jwt.decode(String(getToken()), String(process.env.NEXT_PUBLIC_JWT_SECRET))
       setState({ user: payload })
+      whoAmI()
     }
-  }, [])
+  }, [whoAmI])
 
   const value = useMemo(
     () => ({

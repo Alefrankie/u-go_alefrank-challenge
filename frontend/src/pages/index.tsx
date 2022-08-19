@@ -31,7 +31,7 @@ const Home: NextPage = () => {
     formState: { errors, isSubmitting },
     watch
   } = useForm<Inputs>({
-    defaultValues: { origin: 'Caracas', destination: 'Madrid', budget: 10000 }
+    defaultValues: { origin: '', destination: '', budget: null }
   })
 
   const onSubmit: SubmitHandler<Inputs> = async ({ origin, destination, budget }) => {

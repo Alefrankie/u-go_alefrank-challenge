@@ -9,7 +9,7 @@ interface IFetchFlights {
 }
 
 export async function useFetchFlights({ origin, destination, budget }: IFetchFlights) {
-  return await useFetch.post<IFlight>('http://localhost:3001/api/airlines/flights', {
+  return await useFetch.post<IFlight>('/airlines/flights', {
     body: {
       origin,
       destination,

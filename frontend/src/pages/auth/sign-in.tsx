@@ -24,7 +24,7 @@ const Home: NextPage = () => {
 
   const onSubmit: SubmitHandler<Inputs> = async ({ email, password }) => {
     try {
-      const data = await useFetch.post('http://localhost:3001/api/auth/sign-in', {
+      const data = await useFetch.post('/auth/sign-in', {
         body: {
           email,
           password
