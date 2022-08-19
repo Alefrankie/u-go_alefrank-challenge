@@ -18,7 +18,7 @@ jobs:
       - name: ⚙️ Install Dependencies
         run: npm i
 
-      - name: ⚙️ Install Dependencies
+      - name: ⚙️ Deploying backend to aws
         run: npm run deploy:aws:backend
 
       # - name: 🚚 Deploying to aws
