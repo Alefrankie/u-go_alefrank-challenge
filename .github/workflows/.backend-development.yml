@@ -18,9 +18,9 @@ jobs:
       - name: ⚙️ Install Dependencies
         run: npm i
 
-      - uses: actions/checkout@master
-      - run: echo "THIS IS A TEST PACKAGE" > file.txt
-      - run: zip lambda.zip file.txt
+      # - uses: actions/checkout@master
+      # - run: echo "THIS IS A TEST PACKAGE" > file.txt
+      # - run: zip lambda.zip file.txt
 
       - name: 🚚 Deploying to aws
         uses: stcalica/update-lambda
