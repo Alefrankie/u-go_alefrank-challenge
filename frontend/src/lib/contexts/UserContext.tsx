@@ -35,13 +35,10 @@ export function UserProvider({ children }: Props): React.ReactElement {
   const whoAmI = useCallback(async () => {
     const data = await useFetch.get('/users/who-am-i')
     setState({ user: data })
-    console.log(data)
   }, [])
 
   useEffect((): void => {
     if (getToken()) {
-      const payload = jwt.decode(String(getToken()), String(process.env.NEXT_PUBLIC_JWT_SECRET))
-      setState({ user: payload })
       whoAmI()
     }
   }, [whoAmI])

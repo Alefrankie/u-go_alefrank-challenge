@@ -89,7 +89,7 @@ const Home: NextPage = () => {
 
           <Input
             placeholder="Max $"
-            type="number"
+            type="text"
             register={register('budget', { required: 'Budget is required' })}
             errors={errors.budget}
           />
